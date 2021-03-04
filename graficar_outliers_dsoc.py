@@ -5,10 +5,10 @@ import os
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
 
-carpeta = 'Nov20_Ene21'
+carpeta = 'Nov20_Feb21_mitad'
 dibujar_3d = True
 dibujar_2d = True
-archivo_data = 'data_Laboral_graficos_2020_11_02_2021_01_11.parquet'
+archivo_data = 'data_Laboral_graficos_2020_11_02_2021_02_08.parquet'
 
 
 if not os.path.isdir(carpeta):
@@ -321,4 +321,5 @@ if dibujar_3d:
 
     df = pd.read_parquet(archivo_data)
     df = df.merge(df_outlier, on='Indice_mensual', suffixes=['', '_o'])
+    df['Mes'] = df['Fecha'].dt.month
     df.to_excel(f'Outliers_{variable}.xlsx', index=False)
